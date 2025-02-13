@@ -1,0 +1,201 @@
+'''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 100px;
+            background: url('/mnt/data/img 7.jpg') no-repeat center center/cover;
+            overflow: hidden;
+            
+            background: url('img 7.jpg') no-repeat center center/cover;
+
+
+        }
+        p {
+            font-size: 18px;
+            color: white;
+        }
+        .hidden {
+            display: none;
+        }
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: pink;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            flex-direction: column;
+            transition: transform 2s ease-in-out;
+        }
+        .memory-section {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffe4e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: bottom 2s ease-in-out;
+        }
+        .memory-images img {
+            width: 200px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            background: pink;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        
+        }
+
+        .message-page {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #ffccd5;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        .message-page h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .message-page p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div id="question" class="">
+        <h1>Will you be my Valentine? 🥰💕</h1>
+        <button onclick="handleResponse(true)">Yes</button>
+        <button onclick="handleResponse(false)">No</button>
+        <button onclick="showMessagePage()">Message from Shlok</button>
+    </div>
+    <div id="message" class="message-page">
+        <h2>Message from Shlok 💌</h2>
+        <p>My sweetest Riddhi,</p>
+        <p>You are the most beautiful part of my life, and every moment with you feels magical. Your love, kindness, and presence make my world so much brighter. I feel incredibly blessed to have you, and I cherish every second we share. Thank you for being my happiness, my strength, and my love.</p>
+        <p>I loveeeee youuu so much! ❤️🥰💋</p>
+        <button onclick="goBack()">Go Back</button>
+    </div>
+
+
+    <div id="no-response" class="hidden">
+        <h1>No option baby, you will have to be my Valentine even if you say no cutuu! 🥺💗</h1>
+        <p>Please sayy yess Riddhi 🥺🧿</p>
+        <button onclick="handleResponse(true)">Okayy sweetheart, it's a yess! 💖</button>
+    </div>
+
+    <div id="yes-response" class="celebration hidden">
+        <h1>Thanks my sweetest lady, I lovee youu! ❤️🥳💋</h1>
+    </div>
+
+    <div id="memory-section" class="memory-section hidden">
+        
+        <h2>Our cutuu lil memories</h2>
+        <h1>Our Core Memories 💕</h1>
+        <div class="memory-images">
+            <img src="img 1.jpg" alt="Memory 1">
+            <img src="img 2.jpg" alt="Memory 2">
+            <img src="img 3.jpg" alt="Memory 3">
+            <img src="img 4.jpg" alt="Memory 4">
+            <img src="img 5.jpg" alt="Memory 5">
+            <img src="img 6.jpg" alt="Memory 6">
+            <img src="img 8.jpg" alt="Memory 7">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('question').style.display = 'block';
+            document.getElementById('yes-response').style.display = 'none';
+            document.getElementById('no-response').style.display = 'none';
+            document.getElementById('memory-section').style.display = 'none';
+        });
+
+        function handleResponse(isYes) {
+            document.getElementById('question').style.display = 'none';
+            if (isYes) {
+                document.getElementById('yes-response').style.display = 'flex';
+                startCelebration();
+                setTimeout(showMemories, 5000);
+            } else {
+                document.getElementById('no-response').style.display = 'block';
+            }
+        }
+
+        function startCelebration() {
+            const starsAndBalloons = ['✨', '🎈', '🎆', '🎊', '💖'];
+            for (let i = 0; i < 50; i++) {
+                let emoji = document.createElement('div');
+                emoji.innerText = starsAndBalloons[Math.floor(Math.random() * starsAndBalloons.length)];
+                emoji.style.position = 'fixed';
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.top = Math.random() * 100 + 'vh';
+                emoji.style.fontSize = Math.random() * 30 + 20 + 'px';
+                document.body.appendChild(emoji);
+                setTimeout(() => emoji.remove(), 2000);
+            }
+        }
+
+        function showMemories() {
+            document.getElementById('yes-response').style.transform = 'translateY(-100%)';
+            setTimeout(() => {
+                document.getElementById('memory-section').style.display = 'flex';
+                document.getElementById('memory-section').style.bottom = '0';
+            }, 2000);
+        }
+
+        
+       
+        function showMessagePage() {
+            document.getElementById('question').style.display = 'none';
+            document.getElementById('message').style.display = 'flex';
+        }
+
+        function goBack() {
+            document.getElementById('message').style.display = 'none';
+            document.getElementById('question').style.display = 'block';
+        }
+    
+    </script>
+</body>
+</html>
